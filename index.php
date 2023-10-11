@@ -13,7 +13,7 @@
     <title>BookShop</title>
 </head>
 <body >
-    <h1 class="center">Rajshahi Book Shop</h1>
+    <h1 class="center">Khan Book Shop</h1>
     <h3 class="center">Books Lists</h3>
     <?php
         

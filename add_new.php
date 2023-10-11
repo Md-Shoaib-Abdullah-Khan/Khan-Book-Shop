@@ -13,7 +13,7 @@
     <title>BookShop</title>
 </head>
 <body class="bg-indigo-100">
-    <h1 class="center">Rajshahi Book Shop</h1>
+    <h1 class="center">Khan Book Shop</h1>
     <h3 class="center">Add New Books</h3>
     <?php
         $books = fetch_data_from_database();
