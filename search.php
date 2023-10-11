@@ -8,27 +8,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="./assets/src/style.css">
     <title>BookShop</title>
 </head>
 <body >
     <h1 class="center">Khan Book Shop</h1>
-    <h3 class="center">Books Lists</h3>
+    <h3 class="center">Search Book</h3>
     <?php
         
-        $books = fetch_data_from_database();
-
+        $searched_books = fetch_data_from_database();
+       
     ?>
-    <form class="center" action="add_new.php" method="POST">
-      <input type="hidden" name="operation" value="add-request">
-        <button type="submit" >Add New Book</button>
+    <form class="equal"  method="POST">
+        
+
+        <?php  echo "Book title : ";?>
+        <input type="text"  placeholder="Book Title" name="title"  ?><br><br>
+        <?php  echo "Author : ";?>
+        <input type="text"  placeholder="Author" name="author"  ?><br><br>
+        <?php  echo "ISBN : ";?>
+        <input type="text"  placeholder="ISBN" name="isbn"  ?><br><br>
+        
+        <button  type="submit" >Search</button>
     </form>
-    <form class="center"  action="search.php" method="POST">
-      <input type="hidden" name="operation" value="add-request">
-        <button type="submit" >Search Book</button>
+    <form class="equal" action="index.php" method="POST">
+        <button  type="submit" >Back</button>
     </form>
-<table>
+    
+    <?php 
+    if(!empty($_POST["title"]))
+        foreach($searched_books as $book => $val)
+            if($_POST["title"] != $val["title"]) 
+                unset($searched_books[$book]);    
+    ?>
+    <?php 
+    if(!empty($_POST["author"]))
+        foreach($searched_books as $book => $val)
+            if($_POST["author"] != $val["author"]) 
+                unset($searched_books[$book]);    
+    ?>
+    <?php 
+    if(!empty($_POST["isbn"]))
+        foreach($searched_books as $book => $val)
+            if($_POST["isbn"] != $val["isbn"]) 
+                unset($searched_books[$book]);    
+    ?>
+
+    <table>
         <thead>
             <th>Title</th>
             <th>Author</th>
@@ -39,7 +65,7 @@
         </thead>
         <tbody>
             <?php $idx = 0 ?>
-            <?php foreach($books as $book): ?>
+            <?php foreach($searched_books as $book): ?>
                 <tr>
                     <td> <?php echo $book['title']; ?> </td>
                     <td> <?php echo $book['author']; ?> </td>
@@ -69,4 +95,7 @@
 
         
     </table>
-    
+   
+
+</body>
+</html>
